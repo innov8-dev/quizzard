@@ -26,6 +26,12 @@ public class AppDriver {
              switch (userSelection) {
                  case "1":
                      System.out.println("You selected: Login.");
+                     System.out.println("Log into your account using your credentials");
+                     System.out.print("Username > ");
+                     String username = consoleReader.readLine();
+                     System.out.print("Password > ");
+                     String password = consoleReader.readLine();
+                     System.out.println("You entered: \nUsername - " + username + "\nPassword - " + password);
                      break;
                  case "2":
                      System.out.println("You selected: Register");
