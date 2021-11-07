@@ -35,6 +35,25 @@ public class AppDriver {
                      break;
                  case "2":
                      System.out.println("You selected: Register");
+                     System.out.println("Please provide some information to register an account");
+                     System.out.print("First name > ");
+                     String firstName = consoleReader.readLine();
+                     System.out.print("Last name > ");
+                     String lastName = consoleReader.readLine();
+                     System.out.print("Email > ");
+                     String email = consoleReader.readLine();
+                     System.out.print("Username > ");
+                     String registerUsername = consoleReader.readLine();
+                     System.out.print("Password > ");
+                     String registerPassword = consoleReader.readLine();
+
+                     System.out.printf("You entered: \n" +
+                                       "First name - %s\n" +
+                                       "Last name - %s\n" +
+                                       "Email - %s\n" +
+                                       "Username - %s\n" +
+                                       "Password - %s\n", firstName, lastName, email, registerUsername, registerPassword);
+
                      break;
                  case "3":
                      System.out.println("You selected: Exit");
