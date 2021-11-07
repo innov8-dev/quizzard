@@ -1,6 +1,7 @@
 package com.revature.quizzard;
 
 import java.io.*;
+import java.nio.Buffer;
 
 public class AppDriver {
 
@@ -61,7 +62,7 @@ public class AppDriver {
             String[] userData = dataCursor.split(":");
             if (userData[3].equals(username) && userData[4].equals(password)) {
                 System.out.println("User found with matching credentials: " + dataCursor);
-                return;
+                dashboard(consoleReader, userData[0], userData[1], userData[2], userData[3], userData[4]);
             }
         }
         System.out.println("No user found with matching credentials.");
@@ -94,6 +95,37 @@ public class AppDriver {
         FileWriter dataWriter = new FileWriter(usersDataFile, true);
         dataWriter.write(dataString);
         dataWriter.close();
+
+    }
+
+    public static void dashboard(BufferedReader consoleReader, String firstName, String lastName, String email, String username, String password) throws IOException {
+
+        boolean loggedIn = true;
+        while (loggedIn) {
+            System.out.println("Welcome, " + firstName + "!\n" +
+                    "Please make a selection:\n" +
+                    "1) Create a flashcard\n" +
+                    "2) View my flashcards\n" +
+                    "3) Logout\n" +
+                    "> ");
+
+            String userSelection = consoleReader.readLine();
+
+            switch (userSelection) {
+                case "1":
+                    System.out.println("You selected: Create a flashcard");
+                    break;
+                case "2":
+                    System.out.println("You selected: View my flashcards");
+                    break;
+                case "3":
+                    System.out.println("You selected: Logout");
+                    loggedIn = false;
+                    break;
+                default:
+                    System.out.println("You have made an incorrect selection.");
+            }
+        }
 
     }
 
