@@ -15,7 +15,7 @@ public class AppDriver {
                              "3) Exit\n" +
                              "> ";
 
-        System.out.println(welcomeMenu);
+        System.out.print(welcomeMenu);
 
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
