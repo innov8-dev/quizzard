@@ -57,13 +57,15 @@ public class AppDriver {
                      break;
                  case "3":
                      System.out.println("You selected: Exit");
-                     break;
+                     return;
                  default:
                      System.out.println("You have made an incorrect selection.");
              }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        main(args);
 
     }
 
