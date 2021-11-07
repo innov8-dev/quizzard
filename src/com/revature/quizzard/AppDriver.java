@@ -22,7 +22,20 @@ public class AppDriver {
         String userSelection;
         try {
              userSelection = consoleReader.readLine();
-             System.out.println("You entered: " + userSelection);
+
+             switch (userSelection) {
+                 case "1":
+                     System.out.println("You selected: Login.");
+                     break;
+                 case "2":
+                     System.out.println("You selected: Register");
+                     break;
+                 case "3":
+                     System.out.println("You selected: Exit");
+                     break;
+                 default:
+                     System.out.println("You have made an incorrect selection.");
+             }
         } catch (IOException e) {
             e.printStackTrace();
         }
