@@ -28,33 +28,10 @@ public class AppDriver {
 
                 switch (userSelection) {
                     case "1":
-                        System.out.println("You selected: Login.");
-                        System.out.println("Log into your account using your credentials");
-                        System.out.print("Username > ");
-                        String username = consoleReader.readLine();
-                        System.out.print("Password > ");
-                        String password = consoleReader.readLine();
-                        System.out.println("You entered: \nUsername - " + username + "\nPassword - " + password);
+                        login(consoleReader);
                         break;
                     case "2":
-                        System.out.println("You selected: Register");
-                        System.out.println("Please provide some information to register an account");
-                        System.out.print("First name > ");
-                        String firstName = consoleReader.readLine();
-                        System.out.print("Last name > ");
-                        String lastName = consoleReader.readLine();
-                        System.out.print("Email > ");
-                        String email = consoleReader.readLine();
-                        System.out.print("Username > ");
-                        String registerUsername = consoleReader.readLine();
-                        System.out.print("Password > ");
-                        String registerPassword = consoleReader.readLine();
-                        System.out.printf("You entered: \n" +
-                                "First name - %s\n" +
-                                "Last name - %s\n" +
-                                "Email - %s\n" +
-                                "Username - %s\n" +
-                                "Password - %s\n", firstName, lastName, email, registerUsername, registerPassword);
+                        register(consoleReader);
                         break;
                     case "3":
                         System.out.println("You selected: Exit");
@@ -69,6 +46,37 @@ public class AppDriver {
             e.printStackTrace();
         }
 
+    }
+
+    public static void login(BufferedReader consoleReader) throws IOException {
+        System.out.println("You selected: Login.");
+        System.out.println("Log into your account using your credentials");
+        System.out.print("Username > ");
+        String username = consoleReader.readLine();
+        System.out.print("Password > ");
+        String password = consoleReader.readLine();
+        System.out.println("You entered: \nUsername - " + username + "\nPassword - " + password);
+    }
+
+    public static void register(BufferedReader consoleReader) throws IOException {
+        System.out.println("You selected: Register");
+        System.out.println("Please provide some information to register an account");
+        System.out.print("First name > ");
+        String firstName = consoleReader.readLine();
+        System.out.print("Last name > ");
+        String lastName = consoleReader.readLine();
+        System.out.print("Email > ");
+        String email = consoleReader.readLine();
+        System.out.print("Username > ");
+        String registerUsername = consoleReader.readLine();
+        System.out.print("Password > ");
+        String registerPassword = consoleReader.readLine();
+        System.out.printf("You entered: \n" +
+                "First name - %s\n" +
+                "Last name - %s\n" +
+                "Email - %s\n" +
+                "Username - %s\n" +
+                "Password - %s\n", firstName, lastName, email, registerUsername, registerPassword);
     }
 
 }
