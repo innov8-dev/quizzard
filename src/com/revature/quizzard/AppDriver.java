@@ -63,6 +63,12 @@ public class AppDriver {
              }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                consoleReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         main(args);
