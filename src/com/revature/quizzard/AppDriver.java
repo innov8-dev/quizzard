@@ -54,6 +54,18 @@ public class AppDriver {
         System.out.print("Password > ");
         String password = consoleReader.readLine();
         System.out.println("You entered: \nUsername - " + username + "\nPassword - " + password);
+
+        BufferedReader dataReader = new BufferedReader(new FileReader("database/users.txt"));
+        String dataCursor;
+        while ((dataCursor = dataReader.readLine()) != null) {
+            String[] userData = dataCursor.split(":");
+            if (userData[3].equals(username) && userData[4].equals(password)) {
+                System.out.println("User found with matching credentials: " + dataCursor);
+                return;
+            }
+        }
+        System.out.println("No user found with matching credentials.");
+
     }
 
     public static void register(BufferedReader consoleReader) throws IOException {
