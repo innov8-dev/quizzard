@@ -1,8 +1,6 @@
 package com.revature.quizzard;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class AppDriver {
 
@@ -77,6 +75,14 @@ public class AppDriver {
                 "Email - %s\n" +
                 "Username - %s\n" +
                 "Password - %s\n", firstName, lastName, email, registerUsername, registerPassword);
+
+        String dataString = firstName + ":" + lastName + ":" + email + ":" + registerUsername + ":" + registerPassword + "\n";
+
+        File usersDataFile = new File("database/users.txt");
+        FileWriter dataWriter = new FileWriter(usersDataFile, true);
+        dataWriter.write(dataString);
+        dataWriter.close();
+
     }
 
 }
