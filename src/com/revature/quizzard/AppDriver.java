@@ -8,10 +8,8 @@ public class AppDriver {
 
     public static void main(String[] args) {
 
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-
         String userSelection;
-        try {
+        try (BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in))) {
 
             boolean appRunning = true;
 
@@ -69,12 +67,6 @@ public class AppDriver {
 
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                consoleReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
     }
