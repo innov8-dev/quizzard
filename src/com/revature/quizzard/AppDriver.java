@@ -62,7 +62,8 @@ public class AppDriver {
             String[] userData = dataCursor.split(":");
             if (userData[3].equals(username) && userData[4].equals(password)) {
                 System.out.println("User found with matching credentials: " + dataCursor);
-                dashboard(consoleReader, userData[0], userData[1], userData[2], userData[3], userData[4]);
+                AppUser authenticatedUser = new AppUser(userData[0], userData[1], userData[2], userData[3], userData[4]);
+                dashboard(consoleReader, authenticatedUser);
             }
         }
         System.out.println("No user found with matching credentials.");
@@ -98,11 +99,11 @@ public class AppDriver {
 
     }
 
-    public static void dashboard(BufferedReader consoleReader, String firstName, String lastName, String email, String username, String password) throws IOException {
+    public static void dashboard(BufferedReader consoleReader, AppUser authenticatedUser) throws IOException {
 
         boolean loggedIn = true;
         while (loggedIn) {
-            System.out.println("Welcome, " + firstName + "!\n" +
+            System.out.println("Welcome, " + authenticatedUser.getFirstName() + "!\n" +
                     "Please make a selection:\n" +
                     "1) Create a flashcard\n" +
                     "2) View my flashcards\n" +
