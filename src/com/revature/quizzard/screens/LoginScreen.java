@@ -41,7 +41,7 @@ public class LoginScreen extends Screen {
                 System.out.println("[DEBUG] - User found with matching credentials: " + dataCursor);
                 System.out.println("Credentials verified. Navigating to dashboard...");
                 AppUser authenticatedUser = new AppUser(userData[0], userData[1], userData[2], userData[3], userData[4]);
-                // TODO navigate to DashboardScreen
+                new DashboardScreen(authenticatedUser).render();
                 return;
             }
         }
