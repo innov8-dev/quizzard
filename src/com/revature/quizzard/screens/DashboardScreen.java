@@ -34,12 +34,11 @@ public class DashboardScreen extends Screen {
                     break;
                 case "2":
                     System.out.println("[DEBUG] - View Flashcards selected. Not implemented.");
-                    // TODO navigate to ViewFlashcardScreen
+                    new ViewMyFlashcardsScreen(consoleReader, authenticatedUser.getUsername()).render();
                     break;
                 case "3":
                     System.out.println("Logging out and navigating back to Welcome Screen.");
                     loggedIn = false;
-                    // TODO navigate to WelcomeScreen
                     break;
                 default:
                     System.out.println("You have made an incorrect selection.");
