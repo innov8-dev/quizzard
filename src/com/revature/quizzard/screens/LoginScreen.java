@@ -5,18 +5,15 @@ import com.revature.quizzard.AppUser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class LoginScreen extends Screen {
 
-    public LoginScreen() {
-        super("/login");
+    public LoginScreen(BufferedReader consoleReader) {
+        super("/login", consoleReader);
     }
 
     @Override
     public void render() throws IOException {
-
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\nLog into your account using your credentials");
         System.out.print("Username > ");
@@ -41,7 +38,7 @@ public class LoginScreen extends Screen {
                 System.out.println("[DEBUG] - User found with matching credentials: " + dataCursor);
                 System.out.println("Credentials verified. Navigating to dashboard...");
                 AppUser authenticatedUser = new AppUser(userData[0], userData[1], userData[2], userData[3], userData[4]);
-                new DashboardScreen(authenticatedUser).render();
+                new DashboardScreen(consoleReader, authenticatedUser).render();
                 return;
             }
         }

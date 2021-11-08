@@ -1,2 +1,4 @@
 test:test:test:test:test
 Alice:Anderson:alice.anderson@revature.com:aanderson:password
+Bob:Bailey:bob.bailey@revature.com:bbailey:p4ssw0rd
+Charles:Cantrell:charles.cantrell@revature.com:ccantrell:passw0rd

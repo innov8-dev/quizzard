@@ -2,18 +2,15 @@ package com.revature.quizzard.screens;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class WelcomeScreen extends Screen {
 
-    public WelcomeScreen() {
-        super("/welcome");
+    public WelcomeScreen(BufferedReader consoleReader) {
+        super("/welcome", consoleReader);
     }
 
     @Override
     public void render() throws IOException {
-
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         String welcomeMenu = "Welcome to Quizzard!\n" +
                 "Please make a selection from the options below:\n" +
@@ -27,10 +24,10 @@ public class WelcomeScreen extends Screen {
         String userSelection = consoleReader.readLine();
         switch (userSelection) {
             case "1":
-                new LoginScreen().render();
+                new LoginScreen(consoleReader).render();
                 break;
             case "2":
-                new RegisterScreen().render();
+                new RegisterScreen(consoleReader).render();
                 break;
             case "3":
                 System.out.println("[DEBUG] - Exit selected. Not implemented.");

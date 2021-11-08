@@ -4,14 +4,12 @@ import java.io.*;
 
 public class RegisterScreen extends Screen {
 
-    public RegisterScreen() {
-        super("/register");
+    public RegisterScreen(BufferedReader consoleReader) {
+        super("/register", consoleReader);
     }
 
     @Override
     public void render() throws IOException {
-
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("Please provide some information to register an account");
         System.out.print("First name > ");

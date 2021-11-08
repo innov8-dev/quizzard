@@ -4,21 +4,19 @@ import com.revature.quizzard.AppUser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class DashboardScreen extends Screen {
 
     private final AppUser authenticatedUser;
 
-    public DashboardScreen(AppUser authenticatedUser) {
-        super("/dashboard");
+    public DashboardScreen(BufferedReader consoleReader, AppUser authenticatedUser) {
+        super("/dashboard", consoleReader);
         this.authenticatedUser = authenticatedUser;
     }
 
     @Override
     public void render() throws IOException {
 
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
         boolean loggedIn = true;
         while (loggedIn) {
             System.out.print("Welcome, " + authenticatedUser.getFirstName() + "!\n" +
