@@ -23,7 +23,6 @@ public class LoginScreen extends Screen {
 
         if (username.trim().equals("") || password.trim().equals("")) {
             System.err.println("You have provided invalid values. Navigating back to Welcome Screen...");
-            // TODO navigate back to WelcomeScreen
             return;
         }
 

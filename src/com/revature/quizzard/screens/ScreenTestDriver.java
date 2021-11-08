@@ -8,11 +8,16 @@ public class ScreenTestDriver {
 
     public static void main(String[] args) {
 
+        boolean appRunning = true;
+
         try {
             System.out.println("Starting application...\n");
             BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-            Screen currentScreen = new WelcomeScreen(consoleReader);
-            currentScreen.render();
+
+            while (appRunning) {
+                WelcomeScreen currentScreen = new WelcomeScreen(consoleReader);
+                appRunning = currentScreen.render(true);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
