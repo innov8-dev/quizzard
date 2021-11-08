@@ -30,8 +30,7 @@ public class DashboardScreen extends Screen {
 
             switch (userSelection) {
                 case "1":
-                    System.out.println("[DEBUG] - Create Flashcard selected. Not implemented.");
-                    // TODO navigate to CreateFlashcardScreen
+                    new CreateNewFlashcardScreen(consoleReader, authenticatedUser.getUsername()).render();
                     break;
                 case "2":
                     System.out.println("[DEBUG] - View Flashcards selected. Not implemented.");
