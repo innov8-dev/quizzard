@@ -1,0 +1,3 @@
+test::What does OOP stand for?::Object Oriented Programming
+test::What does the S in SOLID stand for?::Single Responsibility Principle
+test::What does the O in SOLID stand for?::Open/Closed Principle

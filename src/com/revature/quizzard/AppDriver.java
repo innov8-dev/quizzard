@@ -116,7 +116,7 @@ public class AppDriver {
 
         boolean loggedIn = true;
         while (loggedIn) {
-            System.out.println("Welcome, " + authenticatedUser.getFirstName() + "!\n" +
+            System.out.print("Welcome, " + authenticatedUser.getFirstName() + "!\n" +
                     "Please make a selection:\n" +
                     "1) Create a flashcard\n" +
                     "2) View my flashcards\n" +
@@ -127,7 +127,7 @@ public class AppDriver {
 
             switch (userSelection) {
                 case "1":
-                    System.out.println("You selected: Create a flashcard");
+                    createFlashcard(consoleReader, authenticatedUser.getUsername());
                     break;
                 case "2":
                     System.out.println("You selected: View my flashcards");
@@ -139,6 +139,51 @@ public class AppDriver {
                 default:
                     System.out.println("You have made an incorrect selection.");
             }
+        }
+
+    }
+
+    public static void createFlashcard(BufferedReader consoleReader, String creatorUsername) throws IOException {
+
+        System.out.println("You selected: Create a flashcard");
+        System.out.print("Please enter the question text for the flashcard:\n> ");
+        String questionText = consoleReader.readLine();
+
+        System.out.println("You provided: \n\n" + questionText + "\n\n" + "Is this correct? (y/n)");
+        String confirmation = consoleReader.readLine();
+
+        switch (confirmation) {
+            case "y":
+            case "Y":
+            case "yes":
+            case "YES":
+            case "Yes":
+
+                System.out.print("Please enter the answer text for the flashcard:\n> ");
+                String answerText = consoleReader.readLine();
+
+                System.out.println("You provided: \n\n" + answerText + "\n\n" + "Is this correct? (y/n)");
+                confirmation = consoleReader.readLine();
+
+                switch (confirmation) {
+                    case "y":
+                    case "Y":
+                    case "yes":
+                    case "YES":
+                    case "Yes":
+                        Flashcard newFlashcard = new Flashcard(creatorUsername, questionText, answerText);
+                        FileWriter dataWriter = new FileWriter("database/flashcards.txt", true);
+                        dataWriter.write(newFlashcard.toFileString());
+                        dataWriter.close();
+                        break;
+                    default:
+                        System.out.println("Confirmation check failed. Navigating back to dashboard...");
+                }
+
+                break;
+
+            default:
+                System.out.println("Confirmation check failed. Navigating back to dashboard...");
         }
 
     }
