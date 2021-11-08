@@ -1,7 +1,6 @@
 package com.revature.quizzard;
 
 import java.io.*;
-import java.nio.Buffer;
 
 public class AppDriver {
 
@@ -54,6 +53,12 @@ public class AppDriver {
         String username = consoleReader.readLine();
         System.out.print("Password > ");
         String password = consoleReader.readLine();
+
+        if (username.trim().equals("") || password.trim().equals("")) {
+            System.err.println("You have provided invalid values. Navigating back to Welcome Screen...");
+            return;
+        }
+
         System.out.println("You entered: \nUsername - " + username + "\nPassword - " + password);
 
         BufferedReader dataReader = new BufferedReader(new FileReader("database/users.txt"));
