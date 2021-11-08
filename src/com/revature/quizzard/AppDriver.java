@@ -88,6 +88,14 @@ public class AppDriver {
         String registerUsername = consoleReader.readLine();
         System.out.print("Password > ");
         String registerPassword = consoleReader.readLine();
+
+        if (firstName.trim().equals("") || lastName.trim().equals("") || email.trim().equals("") ||
+            registerUsername.trim().equals("") || registerPassword.trim().equals(""))
+        {
+            System.err.println("You have provided invalid values. Navigating back to Welcome Screen...");
+            return;
+        }
+
         System.out.printf("You entered: \n" +
                 "First name - %s\n" +
                 "Last name - %s\n" +
