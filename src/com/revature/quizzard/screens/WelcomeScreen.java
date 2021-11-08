@@ -27,10 +27,10 @@ public class WelcomeScreen extends Screen {
         String userSelection = consoleReader.readLine();
         switch (userSelection) {
             case "1":
-                System.out.println("[DEBUG] - Login selected. Not implemented.");
+                new LoginScreen().render();
                 break;
             case "2":
-                System.out.println("[DEBUG] - Register selected. Not implemented.");
+                new RegisterScreen().render();
                 break;
             case "3":
                 System.out.println("[DEBUG] - Exit selected. Not implemented.");
