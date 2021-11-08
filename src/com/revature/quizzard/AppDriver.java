@@ -1,5 +1,7 @@
 package com.revature.quizzard;
 
+import com.revature.quizzard.util.LinkedList;
+
 import java.io.*;
 
 public class AppDriver {
@@ -130,7 +132,7 @@ public class AppDriver {
                     createFlashcard(consoleReader, authenticatedUser.getUsername());
                     break;
                 case "2":
-                    System.out.println("You selected: View my flashcards");
+                    viewFlashcards(consoleReader, authenticatedUser.getUsername());
                     break;
                 case "3":
                     System.out.println("You selected: Logout");
@@ -185,6 +187,32 @@ public class AppDriver {
             default:
                 System.out.println("Confirmation check failed. Navigating back to dashboard...");
         }
+
+    }
+
+    public static void viewFlashcards(BufferedReader consoleReader, String ownerUsername) throws IOException {
+
+        System.out.println("You selected: View my flashcards");
+
+        BufferedReader dataReader = new BufferedReader(new FileReader("database/flashcards.txt"));
+        LinkedList<Flashcard> flashcards = new LinkedList<>();
+
+        String dataCursor;
+        while ((dataCursor = dataReader.readLine()) != null) {
+            String[] cardData = dataCursor.split("::");
+            if (cardData[0].equals(ownerUsername)) {
+                flashcards.add(new Flashcard(cardData[0], cardData[1], cardData[2]));
+            }
+        }
+
+        System.out.println(ownerUsername + "'s Flashcards: \n\n");
+        for (int i = 0; i < flashcards.size(); i++) {
+            Flashcard card = flashcards.get(i);
+            System.out.printf("Card %d:\n\tQuestion: %s\n\tAnswer: %s\n\n", (i + 1), card.getQuestionText(), card.getAnswerText());
+        }
+
+        System.out.print("Press any key and then enter to return to the dashboard.\n> ");
+        consoleReader.readLine();
 
     }
 

@@ -1,3 +1,5 @@
 test::What does OOP stand for?::Object Oriented Programming
 test::What does the S in SOLID stand for?::Single Responsibility Principle
 test::What does the O in SOLID stand for?::Open/Closed Principle
+aanderson::Is Java a imperative or functional language?::Imperative.
+aanderson:: Does Java "pass-by-value" or "pass-by-reference" when passing a variable to a method as an argument?::Pass-by-value
