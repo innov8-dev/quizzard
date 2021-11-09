@@ -1,8 +1,13 @@
 package com.revature.quizzard.screens;
 
+import com.revature.quizzard.models.AppUser;
+import com.revature.quizzard.services.UserService;
+
 import java.io.*;
 
 public class RegisterScreen extends Screen {
+
+    private final UserService userService = new UserService();
 
     public RegisterScreen(BufferedReader consoleReader) {
         super("/register", consoleReader);
@@ -19,30 +24,16 @@ public class RegisterScreen extends Screen {
         System.out.print("Email > ");
         String email = consoleReader.readLine();
         System.out.print("Username > ");
-        String registerUsername = consoleReader.readLine();
+        String username = consoleReader.readLine();
         System.out.print("Password > ");
-        String registerPassword = consoleReader.readLine();
+        String password = consoleReader.readLine();
 
-        if (firstName.trim().equals("") || lastName.trim().equals("") || email.trim().equals("") ||
-                registerUsername.trim().equals("") || registerPassword.trim().equals(""))
-        {
-            System.err.println("You have provided invalid values. Navigating back to Welcome Screen...");
-            return;
+        AppUser registeredUser = userService.registerNewUser(new AppUser(firstName, lastName, email, username, password));
+        if (registeredUser != null) {
+            System.out.println("Registration successful! Navigating back to Welcome Screen...");
+        } else {
+            System.out.println("Registration unsuccessful! Please try again later.");
         }
-
-        System.out.printf("You entered: \n" +
-                "First name - %s\n" +
-                "Last name - %s\n" +
-                "Email - %s\n" +
-                "Username - %s\n" +
-                "Password - %s\n", firstName, lastName, email, registerUsername, registerPassword);
-
-        String dataString = firstName + ":" + lastName + ":" + email + ":" + registerUsername + ":" + registerPassword + "\n";
-
-        File usersDataFile = new File("database/users.txt");
-        FileWriter dataWriter = new FileWriter(usersDataFile, true);
-        dataWriter.write(dataString);
-        dataWriter.close();
 
     }
 
