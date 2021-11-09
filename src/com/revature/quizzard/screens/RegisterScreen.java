@@ -1,5 +1,7 @@
 package com.revature.quizzard.screens;
 
+import com.revature.quizzard.exceptions.InvalidRequestException;
+import com.revature.quizzard.exceptions.ResourcePersistenceException;
 import com.revature.quizzard.models.AppUser;
 import com.revature.quizzard.services.UserService;
 
@@ -28,12 +30,16 @@ public class RegisterScreen extends Screen {
         System.out.print("Password > ");
         String password = consoleReader.readLine();
 
-        AppUser registeredUser = userService.registerNewUser(new AppUser(firstName, lastName, email, username, password));
-        if (registeredUser != null) {
-            System.out.println("Registration successful! Navigating back to Welcome Screen...");
-        } else {
-            System.out.println("Registration unsuccessful! Please try again later.");
+        try {
+            AppUser registeredUser = userService.registerNewUser(new AppUser(firstName, lastName, email, username, password));
+            System.out.println("[DEBUG] - Persisted user: " + registeredUser);
+        } catch (InvalidRequestException ire) {
+            System.out.println("You provided invalid registration values. Please try again.");
+        } catch (ResourcePersistenceException rpe) {
+            System.out.println(rpe.getMessage());
         }
+
+        System.out.println("Navigating back to Welcome Screen...");
 
     }
 

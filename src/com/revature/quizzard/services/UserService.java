@@ -15,7 +15,6 @@ public class UserService {
         if (newUser.getFirstName().trim().equals("") || newUser.getLastName().trim().equals("") || newUser.getEmail().trim().equals("") ||
                 newUser.getUsername().trim().equals("") || newUser.getPassword().trim().equals(""))
         {
-            System.out.println("You have provided invalid values. Navigating back to Welcome Screen...");
             throw new InvalidRequestException("Invalid registration values provided!");
         }
 
