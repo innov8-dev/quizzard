@@ -35,13 +35,14 @@ public class UserService {
         System.out.println("[DEBUG] - Credentials provided: {username=" + username + ", password=" + password + "}");
 
         try {
-            return userRepo.findByUsernameAndPassword(username, password);
-        } catch (ResourceNotFoundException rnfe) {
-            throw new AuthenticationException();
+            AppUser authenticatedUser = userRepo.findByUsernameAndPassword(username, password);
+            if (authenticatedUser == null) {
+                throw new AuthenticationException();
+            }
+            return authenticatedUser;
         } catch (DataSourceException dse) {
             throw new AuthenticationException(dse);
         }
-
 
     }
 
