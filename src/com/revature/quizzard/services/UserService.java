@@ -1,5 +1,6 @@
 package com.revature.quizzard.services;
 
+import com.revature.quizzard.exceptions.InvalidRequestException;
 import com.revature.quizzard.models.AppUser;
 
 import java.io.File;
@@ -14,7 +15,7 @@ public class UserService {
                 newUser.getUsername().trim().equals("") || newUser.getPassword().trim().equals(""))
         {
             System.out.println("You have provided invalid values. Navigating back to Welcome Screen...");
-            throw new RuntimeException("Invalid values provided");
+            throw new InvalidRequestException("Invalid registration values provided!");
         }
 
         System.out.println("[DEBUG] - User object provided: " + newUser);
