@@ -1,14 +1,13 @@
 package com.revature.quizzard.services;
 
 import com.revature.quizzard.exceptions.InvalidRequestException;
-import com.revature.quizzard.exceptions.ResourcePersistenceException;
 import com.revature.quizzard.models.AppUser;
+import com.revature.quizzard.repositories.UserRepository;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class UserService {
+
+    private final UserRepository userRepo = new UserRepository();
 
     public AppUser registerNewUser(AppUser newUser) {
 
@@ -20,15 +19,7 @@ public class UserService {
 
         System.out.println("[DEBUG] - User object provided: " + newUser);
 
-        String dataString = newUser.toFileString();
-
-        try(FileWriter dataWriter = new FileWriter("database/users.txt", true)) {
-            dataWriter.write(dataString);
-            return newUser;
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new ResourcePersistenceException();
-        }
+        return userRepo.save(newUser);
 
     }
 
