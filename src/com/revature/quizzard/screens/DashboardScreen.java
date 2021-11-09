@@ -1,6 +1,6 @@
 package com.revature.quizzard.screens;
 
-import com.revature.quizzard.AppUser;
+import com.revature.quizzard.models.AppUser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
