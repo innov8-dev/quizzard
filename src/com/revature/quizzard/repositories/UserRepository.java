@@ -63,7 +63,7 @@ public class UserRepository implements CrudRepository<AppUser, String> {
             throw new DataSourceException(e);
         }
 
-        throw new ResourceNotFoundException();
+        return null;
 
     }
 
