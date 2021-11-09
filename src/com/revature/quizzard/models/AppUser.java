@@ -71,7 +71,7 @@ public class AppUser {
     }
 
     public String toFileString() {
-        return id + ":" + firstName + ":" + lastName + ":" + email + ":" + username + ":" + password + ":";
+        return id + ":" + firstName + ":" + lastName + ":" + email + ":" + username + ":" + password;
     }
 
     @Override
