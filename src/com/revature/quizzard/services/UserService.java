@@ -1,6 +1,7 @@
 package com.revature.quizzard.services;
 
 import com.revature.quizzard.exceptions.InvalidRequestException;
+import com.revature.quizzard.exceptions.ResourcePersistenceException;
 import com.revature.quizzard.models.AppUser;
 
 import java.io.File;
@@ -27,9 +28,9 @@ public class UserService {
             return newUser;
         } catch (IOException e) {
             e.printStackTrace();
+            throw new ResourcePersistenceException();
         }
 
-        return null;
     }
 
     public AppUser authenticate(String username, String password) {
