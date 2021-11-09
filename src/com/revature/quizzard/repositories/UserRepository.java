@@ -52,7 +52,7 @@ public class UserRepository implements CrudRepository<AppUser, String> {
             dataWriter.write(userRecord + "\n");
             return newUser;
         } catch (IOException e) {
-            throw new ResourcePersistenceException(e);
+            throw new DataSourceException(e);
         }
     }
 
