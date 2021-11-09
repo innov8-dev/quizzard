@@ -1,9 +1,8 @@
 package com.revature.quizzard.models;
 
-import java.util.Objects;
-
 public class AppUser {
 
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
@@ -16,6 +15,19 @@ public class AppUser {
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public AppUser(String id, String firstName, String lastName, String email, String username, String password) {
+        this(firstName, lastName, email, username, password);
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -59,13 +71,14 @@ public class AppUser {
     }
 
     public String toFileString() {
-        return firstName + ":" + lastName + ":" + email + ":" + username + ":" + password + ":";
+        return id + ":" + firstName + ":" + lastName + ":" + email + ":" + username + ":" + password + ":";
     }
 
     @Override
     public String toString() {
         return "AppUser{" +
-                "firstName='" + firstName + '\'' +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
