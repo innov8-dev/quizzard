@@ -1,8 +1,15 @@
 package com.revature.quizzard.services;
 
+import com.revature.quizzard.exceptions.AuthenticationException;
+import com.revature.quizzard.exceptions.DataSourceException;
 import com.revature.quizzard.exceptions.InvalidRequestException;
+import com.revature.quizzard.exceptions.ResourceNotFoundException;
 import com.revature.quizzard.models.AppUser;
 import com.revature.quizzard.repositories.UserRepository;
+import com.revature.quizzard.screens.DashboardScreen;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 
 public class UserService {
@@ -24,7 +31,22 @@ public class UserService {
     }
 
     public AppUser authenticate(String username, String password) {
-        return null;
+
+        if (username.trim().equals("") || password.trim().equals("")) {
+            throw new InvalidRequestException("Invalid credential values provided!");
+        }
+
+        System.out.println("[DEBUG] - Credentials provided: {username=" + username + ", password=" + password + "}");
+
+        try {
+            return userRepo.findByUsernameAndPassword(username, password);
+        } catch (ResourceNotFoundException rnfe) {
+            throw new AuthenticationException();
+        } catch (DataSourceException dse) {
+            throw new AuthenticationException(dse);
+        }
+
+
     }
 
 }

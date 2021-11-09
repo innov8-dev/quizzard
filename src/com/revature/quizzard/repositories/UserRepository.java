@@ -1,14 +1,38 @@
 package com.revature.quizzard.repositories;
 
+import com.revature.quizzard.exceptions.DataSourceException;
+import com.revature.quizzard.exceptions.ResourceNotFoundException;
 import com.revature.quizzard.exceptions.ResourcePersistenceException;
 import com.revature.quizzard.models.AppUser;
+import com.revature.quizzard.screens.DashboardScreen;
 import com.revature.quizzard.util.List;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.UUID;
 
 public class UserRepository implements CrudRepository<AppUser, String> {
+
+    public AppUser findByUsernameAndPassword(String username, String password) {
+
+        try (BufferedReader dataReader = new BufferedReader(new FileReader("database/users.txt"))) {
+
+            String dataCursor;
+            while ((dataCursor = dataReader.readLine()) != null) {
+                String[] userData = dataCursor.split(":");
+                if (userData[4].equals(username) && userData[5].equals(password)) {
+                    return new AppUser(userData[0], userData[1], userData[2], userData[3], userData[4]);
+                }
+            }
+        } catch (IOException e) {
+            throw new DataSourceException(e);
+        }
+
+        throw new ResourceNotFoundException();
+
+    }
 
     @Override
     public List<AppUser> findAll() {
