@@ -12,9 +12,11 @@ import java.util.UUID;
 
 public class UserRepository implements CrudRepository<AppUser, String> {
 
+    private final String userFilePath = "database/users.txt";
+
     public AppUser findByUsername(String username) {
 
-        try (BufferedReader dataReader = new BufferedReader(new FileReader("database/users.txt"))) {
+        try (BufferedReader dataReader = new BufferedReader(new FileReader(userFilePath))) {
             String dataCursor;
             while ((dataCursor = dataReader.readLine()) != null) {
                 String[] userData = dataCursor.split(":");
@@ -32,7 +34,7 @@ public class UserRepository implements CrudRepository<AppUser, String> {
 
     public AppUser findByEmail(String email) {
 
-        try (BufferedReader dataReader = new BufferedReader(new FileReader("database/users.txt"))) {
+        try (BufferedReader dataReader = new BufferedReader(new FileReader(userFilePath))) {
             String dataCursor;
             while ((dataCursor = dataReader.readLine()) != null) {
                 String[] userData = dataCursor.split(":");
@@ -50,7 +52,7 @@ public class UserRepository implements CrudRepository<AppUser, String> {
 
     public AppUser findByUsernameAndPassword(String username, String password) {
 
-        try (BufferedReader dataReader = new BufferedReader(new FileReader("database/users.txt"))) {
+        try (BufferedReader dataReader = new BufferedReader(new FileReader(userFilePath))) {
             String dataCursor;
             while ((dataCursor = dataReader.readLine()) != null) {
                 String[] userData = dataCursor.split(":");
@@ -78,7 +80,7 @@ public class UserRepository implements CrudRepository<AppUser, String> {
 
     @Override
     public AppUser save(AppUser newUser) {
-        try (FileWriter dataWriter = new FileWriter("database/users.txt", true)) {
+        try (FileWriter dataWriter = new FileWriter(userFilePath, true)) {
             newUser.setId(UUID.randomUUID().toString());
             String userRecord = newUser.toFileString();
             dataWriter.write(userRecord + "\n");
