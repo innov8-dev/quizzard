@@ -4,7 +4,6 @@ import com.revature.quizzard.exceptions.*;
 import com.revature.quizzard.models.AppUser;
 import com.revature.quizzard.repositories.UserRepository;
 
-
 public class UserService {
 
     private final UserRepository userRepo = new UserRepository();
