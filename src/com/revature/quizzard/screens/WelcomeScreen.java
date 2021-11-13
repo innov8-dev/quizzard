@@ -1,5 +1,7 @@
 package com.revature.quizzard.screens;
 
+import static com.revature.quizzard.util.AppContext.*;
+
 import com.revature.quizzard.util.ScreenRouter;
 
 import java.io.BufferedReader;
@@ -13,10 +15,6 @@ public class WelcomeScreen extends Screen {
 
     @Override
     public void render() throws IOException {
-        render(true);
-    }
-
-    public boolean render(boolean appRunning) throws IOException {
         String welcomeMenu = "Welcome to Quizzard!\n" +
                 "Please make a selection from the options below:\n" +
                 "1) Login\n" +
@@ -36,11 +34,10 @@ public class WelcomeScreen extends Screen {
                 break;
             case "3":
                 System.out.println("Exiting application...");
-                return false;
+                shutdown();
+                break;
             default:
                 System.out.println("You have made an incorrect selection.");
         }
-
-        return true;
     }
 }
