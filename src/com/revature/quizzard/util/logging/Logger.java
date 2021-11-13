@@ -12,9 +12,22 @@ public class Logger {
 
     private static Logger logger;
     private final boolean printToConsole;
+    private final Writer logWriter;
 
     private Logger(boolean printToConsole) {
-        this.printToConsole = printToConsole;
+
+        Writer writer = null;
+        boolean consolePrint = printToConsole;
+        try {
+            writer = new FileWriter("resources/logs/app.log", true);
+        } catch (IOException e) {
+            printMessageToConsole("ERROR", "Could not open connection to file. Only printing logs to console.");
+            consolePrint = true;
+        }
+
+        this.printToConsole = consolePrint;
+        this.logWriter = writer;
+
     }
 
     public static Logger getLogger() {
@@ -29,56 +42,39 @@ public class Logger {
         return logger;
     }
 
-    public void info(String message, Object... args) {
-        try (Writer writer = new FileWriter("resources/logs/app.log", true)) {
-            String formattedMessage = formatMessage("INFO", String.format(message, args));
-            writer.write(formattedMessage + "\n");
-
-            if (printToConsole) {
-                printMessageToConsole("INFO", formattedMessage);
+    private void logMessageToFile(String formattedMessage) {
+        if (logWriter != null) {
+            try {
+                logWriter.write(formattedMessage + "\n");
+                logWriter.flush();
+            } catch (IOException e) {
+                printMessageToConsole("ERROR", "Could not write message to file");
             }
-        } catch (IOException e) {
-            printMessageToConsole("ERROR", "Could not write message to file");
         }
+    }
+
+    public void info(String message, Object... args) {
+        String formattedMessage = formatMessage("INFO", String.format(message, args));
+        logMessageToFile(formattedMessage);
+        if (printToConsole) printMessageToConsole("INFO", formattedMessage);
     }
 
     public void warn(String message, Object... args) {
-        try (Writer writer = new FileWriter("resources/logs/app.log", true)) {
-            String formattedMessage = formatMessage("WARN", String.format(message, args));
-            writer.write(formattedMessage + "\n");
-
-            if (printToConsole) {
-                printMessageToConsole("WARN", formattedMessage);
-            }
-        } catch (IOException e) {
-            printMessageToConsole("ERROR", "Could not write message to file");
-        }
+        String formattedMessage = formatMessage("WARN", String.format(message, args));
+        logMessageToFile(formattedMessage);
+        if (printToConsole) printMessageToConsole("WARN", formattedMessage);
     }
 
     public void error(String message, Object... args) {
-        try (Writer writer = new FileWriter("resources/logs/app.log", true)) {
-            String formattedMessage = formatMessage("ERROR", String.format(message, args));
-            writer.write(formattedMessage + "\n");
-
-            if (printToConsole) {
-                printMessageToConsole("ERROR", formattedMessage);
-            }
-        } catch (IOException e) {
-            printMessageToConsole("ERROR", "Could not write message to file");
-        }
+        String formattedMessage = formatMessage("ERROR", String.format(message, args));
+        logMessageToFile(formattedMessage);
+        if (printToConsole) printMessageToConsole("ERROR", formattedMessage);
     }
 
     public void fatal(String message, Object... args) {
-        try (Writer writer = new FileWriter("resources/logs/app.log", true)) {
-            String formattedMessage = formatMessage("FATAL", String.format(message, args));
-            writer.write(formattedMessage + "\n");
-
-            if (printToConsole) {
-                printMessageToConsole("FATAL", formattedMessage);
-            }
-        } catch (IOException e) {
-            printMessageToConsole("ERROR", "Could not write message to file");
-        }
+        String formattedMessage = formatMessage("FATAL", String.format(message, args));
+        logMessageToFile(formattedMessage);
+        printMessageToConsole("FATAL", formattedMessage);
     }
 
     private String formatMessage(String level, String message) {
