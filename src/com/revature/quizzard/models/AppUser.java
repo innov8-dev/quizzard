@@ -15,6 +15,7 @@ public class AppUser {
     }
 
     public AppUser(String firstName, String lastName, String email, String username, String password) {
+        this();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
