@@ -10,10 +10,11 @@ import java.io.IOException;
 
 public class LoginScreen extends Screen {
 
-    private final UserService userService = new UserService();
+    private final UserService userService;
 
-    public LoginScreen(BufferedReader consoleReader, ScreenRouter router) {
+    public LoginScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("/login", consoleReader, router);
+        this.userService = userService;
     }
 
     @Override

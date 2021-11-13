@@ -1,6 +1,7 @@
 package com.revature.quizzard.screens;
 
 import com.revature.quizzard.models.Flashcard;
+import com.revature.quizzard.services.UserService;
 import com.revature.quizzard.util.ScreenRouter;
 
 import java.io.BufferedReader;
@@ -9,11 +10,11 @@ import java.io.IOException;
 
 public class CreateNewFlashcardScreen extends Screen {
 
-    private final String creatorUsername;
+    private final UserService userService;
 
-    public CreateNewFlashcardScreen(BufferedReader consoleReader, ScreenRouter router, String creatorUsername) {
+    public CreateNewFlashcardScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("/new-flashcard", consoleReader, router);
-        this.creatorUsername = creatorUsername;
+        this.userService = userService;
     }
 
     @Override
@@ -43,6 +44,7 @@ public class CreateNewFlashcardScreen extends Screen {
                     case "yes":
                     case "YES":
                     case "Yes":
+                        String creatorUsername = userService.getSessionUser().getUsername();
                         Flashcard newFlashcard = new Flashcard(creatorUsername, questionText, answerText);
                         FileWriter dataWriter = new FileWriter("database/flashcards.txt", true);
                         dataWriter.write(newFlashcard.toFileString());

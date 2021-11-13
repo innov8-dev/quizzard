@@ -1,6 +1,7 @@
 package com.revature.quizzard.screens;
 
 import com.revature.quizzard.models.Flashcard;
+import com.revature.quizzard.services.UserService;
 import com.revature.quizzard.util.ScreenRouter;
 import com.revature.quizzard.util.collections.LinkedList;
 
@@ -10,16 +11,17 @@ import java.io.IOException;
 
 public class ViewMyFlashcardsScreen extends Screen {
 
-    private final String ownerUsername;
+    private final UserService userService;
 
-    public ViewMyFlashcardsScreen(BufferedReader consoleReader, ScreenRouter router, String ownerUsername) {
+    public ViewMyFlashcardsScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("/my-flashcards", consoleReader, router);
-        this.ownerUsername = ownerUsername;
+        this.userService = userService;
     }
 
     @Override
     public void render() throws IOException {
 
+        String ownerUsername = userService.getSessionUser().getUsername();
         BufferedReader dataReader = new BufferedReader(new FileReader("database/flashcards.txt"));
         LinkedList<Flashcard> flashcards = new LinkedList<>();
 

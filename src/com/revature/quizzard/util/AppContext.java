@@ -19,11 +19,11 @@ public class AppContext {
         UserService userService = new UserService();
 
         router.addScreen(new WelcomeScreen(console, router));
-        router.addScreen(new RegisterScreen(console, router));
-        router.addScreen(new LoginScreen(console, router));
+        router.addScreen(new RegisterScreen(console, router, userService));
+        router.addScreen(new LoginScreen(console, router, userService));
         router.addScreen(new DashboardScreen(console, router, userService));
-        router.addScreen(new ViewMyFlashcardsScreen(console, router, null)); // TODO refactor to not require third param
-        router.addScreen(new CreateNewFlashcardScreen(console, router, null)); // TODO refactor to not require third param
+        router.addScreen(new ViewMyFlashcardsScreen(console, router, userService)); // TODO refactor to not require third param
+        router.addScreen(new CreateNewFlashcardScreen(console, router, userService)); // TODO refactor to not require third param
     }
 
     public void startup() {

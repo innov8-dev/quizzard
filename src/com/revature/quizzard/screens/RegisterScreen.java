@@ -10,10 +10,11 @@ import java.io.*;
 
 public class RegisterScreen extends Screen {
 
-    private final UserService userService = new UserService();
+    private final UserService userService;
 
-    public RegisterScreen(BufferedReader consoleReader, ScreenRouter router) {
+    public RegisterScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("/register", consoleReader, router);
+        this.userService = userService;
     }
 
     @Override

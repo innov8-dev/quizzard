@@ -1,3 +1,4 @@
 8fca44bd-0a09-48be-871d-edabc7a53144:test:test:test:test:test
 f7f5ab87-d314-4a5a-926d-df3c0f3c7f4b:Alice:Anderson:alice.anderson@revature.com:aanderson:password
 4ed3f4b2-48f3-4a44-96cb-c1c4a8ee4f80:Bob:Bailey:bob.bailey@revature.com:bbailey:password
+aefd801c-af86-4ef4-8233-974097db923b:Charles:Cantrell:charles.cantrell@revature.com:ccantrell:password
