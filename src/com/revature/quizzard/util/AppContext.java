@@ -1,6 +1,7 @@
 package com.revature.quizzard.util;
 
 import com.revature.quizzard.screens.*;
+import com.revature.quizzard.services.UserService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,10 +15,13 @@ public class AppContext {
         appRunning = true;
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         router = new ScreenRouter();
+
+        UserService userService = new UserService();
+
         router.addScreen(new WelcomeScreen(console, router));
         router.addScreen(new RegisterScreen(console, router));
         router.addScreen(new LoginScreen(console, router));
-        router.addScreen(new DashboardScreen(console, router, null)); // TODO refactor to not require third param
+        router.addScreen(new DashboardScreen(console, router, userService));
         router.addScreen(new ViewMyFlashcardsScreen(console, router, null)); // TODO refactor to not require third param
         router.addScreen(new CreateNewFlashcardScreen(console, router, null)); // TODO refactor to not require third param
     }

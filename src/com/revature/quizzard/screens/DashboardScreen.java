@@ -1,6 +1,6 @@
 package com.revature.quizzard.screens;
 
-import com.revature.quizzard.models.AppUser;
+import com.revature.quizzard.services.UserService;
 import com.revature.quizzard.util.ScreenRouter;
 
 import java.io.BufferedReader;
@@ -8,19 +8,18 @@ import java.io.IOException;
 
 public class DashboardScreen extends Screen {
 
-    private final AppUser authenticatedUser;
+    private final UserService userService;
 
-    public DashboardScreen(BufferedReader consoleReader, ScreenRouter router, AppUser authenticatedUser) {
+    public DashboardScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("/dashboard", consoleReader, router);
-        this.authenticatedUser = authenticatedUser;
+        this.userService = userService;
     }
 
     @Override
     public void render() throws IOException {
 
-        boolean loggedIn = true;
-        while (loggedIn) {
-            System.out.print("Welcome, " + authenticatedUser.getFirstName() + "!\n" +
+        while (userService.isSessionActive()) {
+            System.out.print("Welcome, " + userService.getSessionUser().getFirstName() + "!\n" +
                     "Please make a selection:\n" +
                     "1) Create a flashcard\n" +
                     "2) View my flashcards\n" +
@@ -39,7 +38,7 @@ public class DashboardScreen extends Screen {
                     break;
                 case "3":
                     System.out.println("Logging out and navigating back to Welcome Screen.");
-                    loggedIn = false;
+                    userService.logout();
                     break;
                 default:
                     System.out.println("You have made an incorrect selection.");
