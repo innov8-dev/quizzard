@@ -15,7 +15,7 @@ public class AppContext {
 
     public AppContext() {
 
-        logger.log("Application initialization started at %s", System.currentTimeMillis());
+        logger.info("Application initialization started at %s", System.currentTimeMillis());
 
         appRunning = true;
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
@@ -23,16 +23,19 @@ public class AppContext {
 
         UserService userService = new UserService();
 
-        logger.log("ScreenRouter population started at %s", System.currentTimeMillis());
+        logger.info("ScreenRouter population started at %s", System.currentTimeMillis());
         router.addScreen(new WelcomeScreen(console, router));
         router.addScreen(new RegisterScreen(console, router, userService));
         router.addScreen(new LoginScreen(console, router, userService));
         router.addScreen(new DashboardScreen(console, router, userService));
         router.addScreen(new ViewMyFlashcardsScreen(console, router, userService));
         router.addScreen(new CreateNewFlashcardScreen(console, router, userService));
-        logger.log("ScreenRouter population completed at %s", System.currentTimeMillis());
+        logger.info("ScreenRouter population completed at %s", System.currentTimeMillis());
 
-        logger.log("Application initialization completed at %s", System.currentTimeMillis());
+        logger.info("Application initialization completed at %s", System.currentTimeMillis());
+        logger.warn("Test warning");
+        logger.error("Test error");
+        logger.fatal("Test fatal");
 
     }
 
@@ -42,7 +45,7 @@ public class AppContext {
                 router.navigate("/welcome");
             }
         } catch (Throwable t) {
-            logger.log("An unhandled exception of type %s occurred with the message: %s", t.getClass().getSimpleName(), t.getMessage());
+            logger.fatal("An unhandled exception of type %s occurred with the message: %s", t.getClass().getSimpleName(), t.getMessage());
             System.out.println("An unhandled exception occurred and the application must terminate now.");
         } finally {
             shutdown();
@@ -50,7 +53,7 @@ public class AppContext {
     }
 
     public static void shutdown() {
-        logger.log("Application shutdown request received at %s", System.currentTimeMillis());
+        logger.info("Application shutdown request received at %s", System.currentTimeMillis());
         appRunning = false;
     }
 
