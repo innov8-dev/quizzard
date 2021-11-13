@@ -33,7 +33,6 @@ public class DashboardScreen extends Screen {
                     router.navigate("/new-flashcard");
                     break;
                 case "2":
-                    System.out.println("[DEBUG] - View Flashcards selected. Not implemented.");
                     router.navigate("/my-flashcards");
                     break;
                 case "3":
