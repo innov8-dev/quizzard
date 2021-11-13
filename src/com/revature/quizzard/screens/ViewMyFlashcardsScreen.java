@@ -21,6 +21,8 @@ public class ViewMyFlashcardsScreen extends Screen {
     @Override
     public void render() throws IOException {
 
+        logger.info("Rendering ViewMyFlashcardsScreen");
+
         String ownerUsername = userService.getSessionUser().getUsername();
         BufferedReader dataReader = new BufferedReader(new FileReader("database/flashcards.txt"));
         LinkedList<Flashcard> flashcards = new LinkedList<>();
