@@ -1,8 +1,10 @@
 package com.revature.quizzard.util.logging;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Properties;
 
 public class Logger {
 
@@ -14,11 +16,14 @@ public class Logger {
     private final boolean printToConsole;
     private final Writer logWriter;
 
-    private Logger(boolean printToConsole) {
+    private Logger() {
 
         Writer writer = null;
-        boolean consolePrint = printToConsole;
+        boolean consolePrint;
         try {
+            Properties loggerConfig = new Properties();
+            loggerConfig.load(new FileReader("resources/log.properties"));
+            consolePrint = Boolean.parseBoolean(loggerConfig.getProperty("printToConsole"));
             writer = new FileWriter("resources/logs/app.log", true);
         } catch (IOException e) {
             printMessageToConsole("ERROR", "Could not open connection to file. Only printing logs to console.");
@@ -31,12 +36,8 @@ public class Logger {
     }
 
     public static Logger getLogger() {
-        return getLogger(false);
-    }
-
-    public static Logger getLogger(boolean printToConsole) {
         if (logger == null) {
-            logger = new Logger(printToConsole);
+            logger = new Logger();
         }
 
         return logger;
