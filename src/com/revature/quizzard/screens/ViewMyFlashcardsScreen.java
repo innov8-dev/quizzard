@@ -1,6 +1,7 @@
 package com.revature.quizzard.screens;
 
 import com.revature.quizzard.models.Flashcard;
+import com.revature.quizzard.util.ScreenRouter;
 import com.revature.quizzard.util.collections.LinkedList;
 
 import java.io.BufferedReader;
@@ -11,8 +12,8 @@ public class ViewMyFlashcardsScreen extends Screen {
 
     private final String ownerUsername;
 
-    public ViewMyFlashcardsScreen(BufferedReader consoleReader, String ownerUsername) {
-        super("/my-flashcards", consoleReader);
+    public ViewMyFlashcardsScreen(BufferedReader consoleReader, ScreenRouter router, String ownerUsername) {
+        super("/my-flashcards", consoleReader, router);
         this.ownerUsername = ownerUsername;
     }
 

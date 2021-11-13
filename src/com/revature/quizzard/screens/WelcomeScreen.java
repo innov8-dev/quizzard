@@ -1,12 +1,14 @@
 package com.revature.quizzard.screens;
 
+import com.revature.quizzard.util.ScreenRouter;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 
 public class WelcomeScreen extends Screen {
 
-    public WelcomeScreen(BufferedReader consoleReader) {
-        super("/welcome", consoleReader);
+    public WelcomeScreen(BufferedReader consoleReader, ScreenRouter router) {
+        super("/welcome", consoleReader, router);
     }
 
     @Override
@@ -27,10 +29,10 @@ public class WelcomeScreen extends Screen {
         String userSelection = consoleReader.readLine();
         switch (userSelection) {
             case "1":
-                new LoginScreen(consoleReader).render();
+                router.navigate("/login");
                 break;
             case "2":
-                new RegisterScreen(consoleReader).render();
+                router.navigate("/register");
                 break;
             case "3":
                 System.out.println("Exiting application...");

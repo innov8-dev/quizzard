@@ -1,6 +1,7 @@
 package com.revature.quizzard.screens;
 
 import com.revature.quizzard.models.AppUser;
+import com.revature.quizzard.util.ScreenRouter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,8 +10,8 @@ public class DashboardScreen extends Screen {
 
     private final AppUser authenticatedUser;
 
-    public DashboardScreen(BufferedReader consoleReader, AppUser authenticatedUser) {
-        super("/dashboard", consoleReader);
+    public DashboardScreen(BufferedReader consoleReader, ScreenRouter router, AppUser authenticatedUser) {
+        super("/dashboard", consoleReader, router);
         this.authenticatedUser = authenticatedUser;
     }
 
@@ -30,11 +31,11 @@ public class DashboardScreen extends Screen {
 
             switch (userSelection) {
                 case "1":
-                    new CreateNewFlashcardScreen(consoleReader, authenticatedUser.getUsername()).render();
+                    router.navigate("/new-flashcard");
                     break;
                 case "2":
                     System.out.println("[DEBUG] - View Flashcards selected. Not implemented.");
-                    new ViewMyFlashcardsScreen(consoleReader, authenticatedUser.getUsername()).render();
+                    router.navigate("/my-flashcards");
                     break;
                 case "3":
                     System.out.println("Logging out and navigating back to Welcome Screen.");

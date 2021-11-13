@@ -4,6 +4,7 @@ import com.revature.quizzard.exceptions.InvalidRequestException;
 import com.revature.quizzard.exceptions.ResourcePersistenceException;
 import com.revature.quizzard.models.AppUser;
 import com.revature.quizzard.services.UserService;
+import com.revature.quizzard.util.ScreenRouter;
 
 import java.io.*;
 
@@ -11,8 +12,8 @@ public class RegisterScreen extends Screen {
 
     private final UserService userService = new UserService();
 
-    public RegisterScreen(BufferedReader consoleReader) {
-        super("/register", consoleReader);
+    public RegisterScreen(BufferedReader consoleReader, ScreenRouter router) {
+        super("/register", consoleReader, router);
     }
 
     @Override

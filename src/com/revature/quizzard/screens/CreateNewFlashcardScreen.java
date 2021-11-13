@@ -1,6 +1,7 @@
 package com.revature.quizzard.screens;
 
 import com.revature.quizzard.models.Flashcard;
+import com.revature.quizzard.util.ScreenRouter;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;
@@ -10,8 +11,8 @@ public class CreateNewFlashcardScreen extends Screen {
 
     private final String creatorUsername;
 
-    public CreateNewFlashcardScreen(BufferedReader consoleReader, String creatorUsername) {
-        super("/new-flashcard", consoleReader);
+    public CreateNewFlashcardScreen(BufferedReader consoleReader, ScreenRouter router, String creatorUsername) {
+        super("/new-flashcard", consoleReader, router);
         this.creatorUsername = creatorUsername;
     }
 
