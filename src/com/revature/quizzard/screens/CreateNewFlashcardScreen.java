@@ -3,6 +3,7 @@ package com.revature.quizzard.screens;
 import com.revature.quizzard.models.Flashcard;
 import com.revature.quizzard.services.UserService;
 import com.revature.quizzard.util.ScreenRouter;
+import com.revature.quizzard.util.logging.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;

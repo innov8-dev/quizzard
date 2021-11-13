@@ -3,14 +3,11 @@ package com.revature.quizzard.screens;
 import static com.revature.quizzard.util.AppContext.*;
 
 import com.revature.quizzard.util.ScreenRouter;
-import com.revature.quizzard.util.logging.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
 public class WelcomeScreen extends Screen {
-
-    private static final Logger logger = Logger.getLogger();
 
     public WelcomeScreen(BufferedReader consoleReader, ScreenRouter router) {
         super("/welcome", consoleReader, router);

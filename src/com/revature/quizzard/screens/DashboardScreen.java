@@ -2,14 +2,11 @@ package com.revature.quizzard.screens;
 
 import com.revature.quizzard.services.UserService;
 import com.revature.quizzard.util.ScreenRouter;
-import com.revature.quizzard.util.logging.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
 public class DashboardScreen extends Screen {
-
-    private static final Logger logger = Logger.getLogger();
 
     private final UserService userService;
 

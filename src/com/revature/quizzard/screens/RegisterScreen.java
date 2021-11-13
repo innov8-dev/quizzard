@@ -5,13 +5,10 @@ import com.revature.quizzard.exceptions.ResourcePersistenceException;
 import com.revature.quizzard.models.AppUser;
 import com.revature.quizzard.services.UserService;
 import com.revature.quizzard.util.ScreenRouter;
-import com.revature.quizzard.util.logging.Logger;
 
 import java.io.*;
 
 public class RegisterScreen extends Screen {
-
-    private static final Logger logger = Logger.getLogger();
 
     private final UserService userService;
 
