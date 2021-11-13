@@ -33,9 +33,6 @@ public class AppContext {
         logger.info("ScreenRouter population completed at %s", System.currentTimeMillis());
 
         logger.info("Application initialization completed at %s", System.currentTimeMillis());
-        logger.warn("Test warning");
-        logger.error("Test error");
-        logger.fatal("Test fatal");
 
     }
 
