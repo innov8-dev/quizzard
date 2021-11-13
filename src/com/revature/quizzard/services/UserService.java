@@ -14,7 +14,7 @@ public class UserService {
 
     public AppUser registerNewUser(AppUser newUser) {
 
-        logger.info("User object provided: " + newUser);
+        logger.info("Registration request for user, %s, received", newUser.getUsername());
 
         if (newUser.getFirstName().trim().equals("") || newUser.getLastName().trim().equals("") || newUser.getEmail().trim().equals("") ||
                 newUser.getUsername().trim().equals("") || newUser.getPassword().trim().equals(""))
@@ -45,13 +45,13 @@ public class UserService {
 
     public AppUser authenticate(String username, String password) {
 
+        logger.info("Credentials received for user with username: %s", username);
+
         if (username.trim().equals("") || password.trim().equals("")) {
             String msg = "Invalid credential values provided";
             logger.warn(msg);
             throw new InvalidRequestException(msg);
         }
-
-        logger.info("Credentials provided: {username=%s, password=%s}", username, password);
 
         try {
             AppUser authenticatedUser = userRepo.findByUsernameAndPassword(username, password);
