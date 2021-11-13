@@ -2,7 +2,7 @@ package com.revature.quizzard.repositories;
 
 import com.revature.quizzard.exceptions.DataSourceException;
 import com.revature.quizzard.models.AppUser;
-import com.revature.quizzard.util.List;
+import com.revature.quizzard.util.collections.List;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,4 +1,4 @@
-package com.revature.quizzard.util;
+package com.revature.quizzard.util.collections;
 
 public interface Collection<T> {
     boolean add(T element);

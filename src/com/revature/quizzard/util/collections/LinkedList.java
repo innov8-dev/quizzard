@@ -1,4 +1,4 @@
-package com.revature.quizzard.util;
+package com.revature.quizzard.util.collections;
 
 public class LinkedList<T> implements List<T> {
     private int size;

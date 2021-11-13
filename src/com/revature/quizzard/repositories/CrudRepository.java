@@ -1,6 +1,6 @@
 package com.revature.quizzard.repositories;
 
-import com.revature.quizzard.util.List;
+import com.revature.quizzard.util.collections.List;
 
 public interface CrudRepository<T, I> {
     List<T> findAll();

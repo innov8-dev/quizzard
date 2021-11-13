@@ -1,7 +1,7 @@
 package com.revature.quizzard.screens;
 
 import com.revature.quizzard.models.Flashcard;
-import com.revature.quizzard.util.LinkedList;
+import com.revature.quizzard.util.collections.LinkedList;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
