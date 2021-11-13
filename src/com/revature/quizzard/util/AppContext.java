@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 
 public class AppContext {
 
-    private static final Logger logger = Logger.getLogger(true);
+    private static final Logger logger = Logger.getLogger();
     private static boolean appRunning;
     private final ScreenRouter router;
 
@@ -44,8 +44,6 @@ public class AppContext {
         } catch (Throwable t) {
             logger.fatal("An unhandled exception of type %s occurred with the message: %s", t.getClass().getSimpleName(), t.getMessage());
             System.out.println("An unhandled exception occurred and the application must terminate now.");
-        } finally {
-            shutdown();
         }
     }
 
