@@ -11,6 +11,7 @@ public class Logger {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_GREEN = "\u001B[32m";
 
     private static Logger logger;
     private final boolean printToConsole;
@@ -85,7 +86,7 @@ public class Logger {
     private void printMessageToConsole(String level, String message) {
         switch (level) {
             case "INFO":
-                System.out.println(message);
+                System.out.println(ANSI_GREEN + message + ANSI_RESET);
                 break;
             case "WARN":
                 System.out.println(ANSI_YELLOW + message + ANSI_RESET);
