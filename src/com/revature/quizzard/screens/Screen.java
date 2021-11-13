@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public abstract class Screen {
 
-    protected String route;
-    protected BufferedReader consoleReader;
-    protected ScreenRouter router;
+    protected final String route;
+    protected final BufferedReader consoleReader;
+    protected final ScreenRouter router;
 
     protected Screen(String route, BufferedReader consoleReader, ScreenRouter router) {
         this.route = route;

@@ -6,11 +6,11 @@ public class LinkedList<T> implements List<T> {
     private Node<T> tail = null; // you can explicitly declare them as null, but it's not required.
 
     @Override
-    public boolean add(T data) {
+    public void add(T data) {
 
         // Not required, as some data structures do allow for null values.
         if (data == null) {
-            return false;
+            return;
         }
 
         Node<T> newNode = new Node<>(data);
@@ -21,8 +21,6 @@ public class LinkedList<T> implements List<T> {
         }
 
         size++;
-
-        return true;
 
     }
 
@@ -126,7 +124,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     private static class Node<T> {
-        T data;
+        final T data;
         Node<T> nextNode;
 
         public Node(T data) {
