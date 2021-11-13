@@ -31,12 +31,15 @@ public class WelcomeScreen extends Screen {
         String userSelection = consoleReader.readLine();
         switch (userSelection) {
             case "1":
+                logger.info("User made selection to: Login");
                 router.navigate("/login");
                 break;
             case "2":
+                logger.info("User made selection to: Register");
                 router.navigate("/register");
                 break;
             case "3":
+                logger.info("User made selection to: Exit");
                 System.out.println("Exiting application...");
                 shutdown();
                 break;
