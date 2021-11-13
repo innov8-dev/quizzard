@@ -6,6 +6,7 @@ import com.revature.quizzard.repositories.UserRepository;
 
 public class UserService {
 
+    private AppUser sessionUser;
     private final UserRepository userRepo = new UserRepository();
 
     public AppUser registerNewUser(AppUser newUser) {
@@ -48,6 +49,7 @@ public class UserService {
             if (authenticatedUser == null) {
                 throw new AuthenticationException();
             }
+            sessionUser = authenticatedUser;
             return authenticatedUser;
         } catch (DataSourceException dse) {
             throw new AuthenticationException(dse);
@@ -63,4 +65,15 @@ public class UserService {
         return (userRepo.findByEmail(email) == null);
     }
 
+    public AppUser getSessionUser() {
+        return sessionUser;
+    }
+
+    public boolean isSessionActive() {
+        return sessionUser != null;
+    }
+
+    public void logout() {
+        sessionUser = null;
+    }
 }
