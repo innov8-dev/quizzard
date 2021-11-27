@@ -48,11 +48,7 @@ public class CreateNewFlashcardScreen extends Screen {
                     case "YES":
                     case "Yes":
                         logger.info("User confirmed the correctness of the provided answer text");
-                        String creatorUsername = userService.getSessionUser().getUsername();
-                        Flashcard newFlashcard = new Flashcard(creatorUsername, questionText, answerText);
-                        FileWriter dataWriter = new FileWriter("database/flashcards.txt", true);
-                        dataWriter.write(newFlashcard.toFileString());
-                        dataWriter.close();
+                        userService.saveNewCard(new Flashcard(questionText, answerText));
                         break;
                     default:
                         logger.info("User did not confirm the correctness of the provided answer text");

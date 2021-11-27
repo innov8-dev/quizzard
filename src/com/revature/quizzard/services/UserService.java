@@ -2,7 +2,10 @@ package com.revature.quizzard.services;
 
 import com.revature.quizzard.exceptions.*;
 import com.revature.quizzard.models.AppUser;
+import com.revature.quizzard.models.Flashcard;
+import com.revature.quizzard.repositories.FlashcardRepository;
 import com.revature.quizzard.repositories.UserRepository;
+import com.revature.quizzard.util.collections.List;
 import com.revature.quizzard.util.logging.Logger;
 
 public class UserService {
@@ -11,6 +14,7 @@ public class UserService {
 
     private AppUser sessionUser;
     private final UserRepository userRepo = new UserRepository();
+    private final FlashcardRepository cardRepo = new FlashcardRepository();
 
     public AppUser registerNewUser(AppUser newUser) {
 
@@ -91,5 +95,38 @@ public class UserService {
     public void logout() {
         logger.info("Terminating current user session");
         sessionUser = null;
+    }
+
+    public List<Flashcard> getMyFlashcards() {
+        logger.info("Service request to fetch current session user's flashcards received");
+
+        if (isSessionActive()) {
+            return cardRepo.findCardsByCreatorUsername(getSessionUser().getUsername());
+        } else {
+            throw new AuthenticationException("No active session found");
+        }
+
+    }
+
+    public Flashcard saveNewCard(Flashcard newCard) {
+
+        logger.info("Service request to add new flashcard to data source received");
+
+        if (!isSessionActive()) {
+            throw new AuthenticationException("No active session found");
+        }
+
+        if (newCard.getQuestionText().trim().equals("") || newCard.getAnswerText().trim().equals("")) {
+            throw new InvalidRequestException("Invalid new card values provided");
+        }
+
+        newCard.setCreator(sessionUser.getUsername());
+
+        try {
+            return cardRepo.save(newCard);
+        } catch (DataSourceException dse) {
+            logger.warn(dse.getMessage());
+            throw new ResourcePersistenceException(dse);
+        }
     }
 }

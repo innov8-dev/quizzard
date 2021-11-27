@@ -3,10 +3,9 @@ package com.revature.quizzard.screens;
 import com.revature.quizzard.models.Flashcard;
 import com.revature.quizzard.services.UserService;
 import com.revature.quizzard.util.ScreenRouter;
-import com.revature.quizzard.util.collections.LinkedList;
+import com.revature.quizzard.util.collections.List;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class ViewMyFlashcardsScreen extends Screen {
@@ -24,16 +23,8 @@ public class ViewMyFlashcardsScreen extends Screen {
         logger.info("Rendering ViewMyFlashcardsScreen");
 
         String ownerUsername = userService.getSessionUser().getUsername();
-        BufferedReader dataReader = new BufferedReader(new FileReader("database/flashcards.txt"));
-        LinkedList<Flashcard> flashcards = new LinkedList<>();
 
-        String dataCursor;
-        while ((dataCursor = dataReader.readLine()) != null) {
-            String[] cardData = dataCursor.split("::");
-            if (cardData[0].equals(ownerUsername)) {
-                flashcards.add(new Flashcard(cardData[0], cardData[1], cardData[2]));
-            }
-        }
+        List<Flashcard> flashcards = userService.getMyFlashcards();
 
         System.out.println(ownerUsername + "'s Flashcards: \n\n");
         for (int i = 0; i < flashcards.size(); i++) {
