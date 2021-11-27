@@ -97,36 +97,4 @@ public class UserService {
         sessionUser = null;
     }
 
-    public List<Flashcard> getMyFlashcards() {
-        logger.info("Service request to fetch current session user's flashcards received");
-
-        if (isSessionActive()) {
-            return cardRepo.findCardsByCreatorUsername(getSessionUser().getUsername());
-        } else {
-            throw new AuthenticationException("No active session found");
-        }
-
-    }
-
-    public Flashcard saveNewCard(Flashcard newCard) {
-
-        logger.info("Service request to add new flashcard to data source received");
-
-        if (!isSessionActive()) {
-            throw new AuthenticationException("No active session found");
-        }
-
-        if (newCard.getQuestionText().trim().equals("") || newCard.getAnswerText().trim().equals("")) {
-            throw new InvalidRequestException("Invalid new card values provided");
-        }
-
-        newCard.setCreator(sessionUser.getUsername());
-
-        try {
-            return cardRepo.save(newCard);
-        } catch (DataSourceException dse) {
-            logger.warn(dse.getMessage());
-            throw new ResourcePersistenceException(dse);
-        }
-    }
 }

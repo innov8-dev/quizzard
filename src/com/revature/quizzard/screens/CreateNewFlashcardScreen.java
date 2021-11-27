@@ -1,20 +1,20 @@
 package com.revature.quizzard.screens;
 
 import com.revature.quizzard.models.Flashcard;
+import com.revature.quizzard.services.FlashcardService;
 import com.revature.quizzard.services.UserService;
 import com.revature.quizzard.util.ScreenRouter;
 
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class CreateNewFlashcardScreen extends Screen {
 
-    private final UserService userService;
+    private final FlashcardService cardService;
 
-    public CreateNewFlashcardScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
+    public CreateNewFlashcardScreen(BufferedReader consoleReader, ScreenRouter router, FlashcardService cardService) {
         super("/new-flashcard", consoleReader, router);
-        this.userService = userService;
+        this.cardService = cardService;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class CreateNewFlashcardScreen extends Screen {
                     case "YES":
                     case "Yes":
                         logger.info("User confirmed the correctness of the provided answer text");
-                        userService.saveNewCard(new Flashcard(questionText, answerText));
+                        cardService.saveNewCard(new Flashcard(questionText, answerText));
                         break;
                     default:
                         logger.info("User did not confirm the correctness of the provided answer text");

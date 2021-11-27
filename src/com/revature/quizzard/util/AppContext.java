@@ -1,6 +1,7 @@
 package com.revature.quizzard.util;
 
 import com.revature.quizzard.screens.*;
+import com.revature.quizzard.services.FlashcardService;
 import com.revature.quizzard.services.UserService;
 import com.revature.quizzard.util.logging.Logger;
 
@@ -22,14 +23,15 @@ public class AppContext {
         router = new ScreenRouter();
 
         UserService userService = new UserService();
+        FlashcardService cardService = new FlashcardService();
 
         logger.info("ScreenRouter population started at %s", System.currentTimeMillis());
         router.addScreen(new WelcomeScreen(console, router));
         router.addScreen(new RegisterScreen(console, router, userService));
         router.addScreen(new LoginScreen(console, router, userService));
         router.addScreen(new DashboardScreen(console, router, userService));
-        router.addScreen(new ViewMyFlashcardsScreen(console, router, userService));
-        router.addScreen(new CreateNewFlashcardScreen(console, router, userService));
+        router.addScreen(new ViewMyFlashcardsScreen(console, router, userService, cardService));
+        router.addScreen(new CreateNewFlashcardScreen(console, router, cardService));
         logger.info("ScreenRouter population completed at %s", System.currentTimeMillis());
 
         logger.info("Application initialization completed at %s", System.currentTimeMillis());
