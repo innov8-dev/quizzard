@@ -32,7 +32,7 @@ public class LoginScreen extends Screen {
             AppUser authenticatedUser = userService.authenticate(username, password);
             router.navigate("/dashboard");
         } catch (AuthenticationException ae) {
-            System.out.println(ae.getMessage());
+            logger.warn(ae.getMessage());
         }
 
         System.out.println("Navigating back to Welcome Screen...");

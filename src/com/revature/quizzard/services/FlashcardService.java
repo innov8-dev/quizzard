@@ -14,7 +14,11 @@ public class FlashcardService {
     private final static Logger logger = Logger.getLogger();
 
     public final FlashcardRepository cardRepo = new FlashcardRepository();
-    public final UserService userService = new UserService();
+    public final UserService userService;
+
+    public FlashcardService(UserService userService) {
+        this.userService = userService;
+    }
 
     public List<Flashcard> getMyFlashcards() {
         logger.info("Service request to fetch current session user's flashcards received");

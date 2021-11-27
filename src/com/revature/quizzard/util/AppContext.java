@@ -23,7 +23,7 @@ public class AppContext {
         router = new ScreenRouter();
 
         UserService userService = new UserService();
-        FlashcardService cardService = new FlashcardService();
+        FlashcardService cardService = new FlashcardService(userService);
 
         logger.info("ScreenRouter population started at %s", System.currentTimeMillis());
         router.addScreen(new WelcomeScreen(console, router));
